@@ -986,5 +986,4 @@ select:focus-visible {
   .card { padding: var(--space-lg); }
 }
 
-/* Sem overflow horizontal em nenhuma largura */
-html, body, .app-shell { overflow-x: hidden; }
+
