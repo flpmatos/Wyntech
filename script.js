@@ -43,7 +43,6 @@ const CONFIG = {
     'Estacao Monitoramento',
     'Estacao Externa'
     
-
   ],
 
   macLength: 12,
