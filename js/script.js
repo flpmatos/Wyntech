@@ -30,13 +30,19 @@ const CONFIG = {
 
   // Tipos de equipamento — editar aqui para adicionar novos equipamentos.
   equipmentTypes: [
-    'ONU',
-    'ONT',
-    'Roteador',
-    'Modem',
-    'Switch',
-    'Access Point',
-    'Outro'
+    'Mini PC',
+    'Notebook Externo',
+    'Notebook Positivo',
+    'Notebook Lenovo',
+    'Totem',
+    'Thin Client',
+    'Estação Financeira',
+    'Impressora',
+    'Estacao Captura',
+    'Dell',
+    'Estacao Monitoramento',
+    'Estacao Externa'
+    
   ],
 
   macLength: 12,
