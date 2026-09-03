@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+<title>Portal Técnico Wyntech — Solicitação Técnica</title>
+<meta name="description" content="Solicitação técnica padronizada para técnicos de campo Wyntech." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400..700,0..1,0" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="app-header pt-safe">
+    <div class="app-header__inner">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">W</div>
+        <div class="brand__divider"></div>
+        <div class="brand__context">
+          <span class="brand__context-label">Portal Técnico</span>
+          <h1 class="brand__context-title">Ordem de Serviço</h1>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Status da rede">
+          <span class="material-symbols-outlined" aria-hidden="true">network_check</span>
+        </button>
+        <div class="avatar" aria-hidden="true">
+          <span class="material-symbols-outlined">person</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="app-main">
+
+    <!-- Status row -->
+    <div class="status-row">
+      <span class="badge badge--alert">
+        <span class="badge--dot" aria-hidden="true"></span>
+        Telecom / Suporte Técnico
+      </span>
+      <span class="badge badge--success">
+        <span class="material-symbols-outlined" aria-hidden="true">cell_tower</span>
+        Rede Campo Ativa
+      </span>
+    </div>
+
+    <!-- Title -->
+    <div class="page-title">
+      <h2>Solicitação Técnica</h2>
+      <p>Preencha os dados abaixo para gerar o despacho técnico e enviar ao grupo.</p>
+    </div>
+
+    <form id="techRequestForm" novalidate>
+
+      <!-- ===================== SEÇÃO 1 — Informações necessárias ===================== -->
+      <div class="section" style="margin-bottom: var(--space-lg);">
+        <div class="section-header">
+          <span class="section-title">
+            <span class="material-symbols-outlined" aria-hidden="true">checklist</span>
+            1. Informações necessárias <span class="required-mark">*</span>
+          </span>
+        </div>
+
+        <div class="field" id="fieldPurpose">
+          <label class="field__label" for="purposeInput">
+            <span>Finalidade da requisição <span class="required-mark">*</span></span>
+          </label>
+          <div class="field__control">
+            <select
+              class="field__select"
+              id="purposeInput"
+              name="purpose"
+              required
+              aria-required="true"
+              aria-describedby="errorPurpose"
+            >
+              <!-- Opções renderizadas via JS a partir de CONFIG.purposeOptions -->
+            </select>
+            <span class="material-symbols-outlined field__icon" aria-hidden="true">expand_more</span>
+          </div>
+          <span class="field-error" id="errorPurpose" role="alert">
+            <span class="material-symbols-outlined" aria-hidden="true">error</span>
+            Selecione a finalidade da requisição.
+          </span>
+        </div>
+      </div>
+
+      <!-- ===================== SEÇÃO 2 — Dados da solicitação ===================== -->
+      <div class="card" style="margin-bottom: var(--space-lg);">
+        <div class="card__header">
+          <span class="section-title">
+            <span class="material-symbols-outlined" aria-hidden="true">feed</span>
+            2. Dados da solicitação
+          </span>
+          <span class="card__header-note">Todos obrigatórios</span>
+        </div>
+
+        <!-- Req -->
+        <div class="field" id="fieldReq">
+          <label class="field__label" for="campoReq">
+            <span>Número da Requisição (Req) <span class="required-mark">*</span></span>
+            <span class="field__label-hint">Ex: REQ-89342</span>
+          </label>
+          <div class="field__control">
+            <input
+              class="field__input"
+              type="text"
+              id="campoReq"
+              name="req"
+              placeholder="Digite o número da requisição"
+              autocomplete="off"
+              inputmode="text"
+              required
+              aria-required="true"
+              aria-describedby="errorReq"
+            />
+            <span class="material-symbols-outlined field__icon" aria-hidden="true">tag</span>
+          </div>
+          <span class="field-error" id="errorReq" role="alert">
+            <span class="material-symbols-outlined" aria-hidden="true">error</span>
+            Informe o número da requisição.
+          </span>
+        </div>
+
+        <!-- MAC Address -->
+        <div class="field" id="fieldMac">
+          <div class="mac-meta">
+            <label class="field__label" for="campoMac" style="margin:0;">
+              <span>MAC Address <span class="required-mark">*</span></span>
+              <span class="mac-tag">12 caracteres</span>
+            </label>
+            <span class="mac-counter" id="macCounter">0/12</span>
+          </div>
+          <div class="field__control">
+            <input
+              class="field__input field__input--mono"
+              type="text"
+              id="campoMac"
+              name="mac"
+              placeholder="Digite o MAC Address (Ex: A1B2C3D4E5F6)"
+              autocomplete="off"
+              inputmode="text"
+              autocapitalize="characters"
+              spellcheck="false"
+              maxlength="32"
+              required
+              aria-required="true"
+              aria-describedby="errorMac"
+            />
+            <span class="mac-status-icon" id="macStatusIcon" aria-hidden="true">
+              <span class="material-symbols-outlined">fingerprint</span>
+            </span>
+          </div>
+          <div class="mac-footer">
+            <span class="field-error" id="errorMac" role="alert">
+              <span class="material-symbols-outlined" aria-hidden="true">error</span>
+              MAC deve conter exatamente 12 caracteres.
+            </span>
+            <button class="mac-paste-btn" type="button" id="btnPasteMac">
+              <span class="material-symbols-outlined" aria-hidden="true">content_paste</span>
+              Colar
+            </button>
+          </div>
+        </div>
+
+        <!-- Nome Lógico -->
+        <div class="field" id="fieldNomeLogico">
+          <label class="field__label" for="campoNomeLogico">
+            <span>Nome Lógico <span class="required-mark">*</span></span>
+          </label>
+          <div class="field__control">
+            <input
+              class="field__input"
+              type="text"
+              id="campoNomeLogico"
+              name="nomeLogico"
+              placeholder="Digite o nome lógico"
+              autocomplete="off"
+              required
+              aria-required="true"
+              aria-describedby="errorNomeLogico"
+            />
+            <span class="material-symbols-outlined field__icon" aria-hidden="true">dns</span>
+          </div>
+          <span class="field-error" id="errorNomeLogico" role="alert">
+            <span class="material-symbols-outlined" aria-hidden="true">error</span>
+            Informe o nome lógico.
+          </span>
+        </div>
+
+        <!-- Tipo de Equipamento -->
+        <div class="field" id="fieldTipoEquipamento">
+          <label class="field__label" for="campoTipoEquipamento">
+            <span>Tipo de Equipamento <span class="required-mark">*</span></span>
+          </label>
+          <div class="field__control">
+            <select
+              class="field__select"
+              id="campoTipoEquipamento"
+              name="tipoEquipamento"
+              required
+              aria-required="true"
+              aria-describedby="errorTipoEquipamento"
+            >
+              <!-- Opções renderizadas via JS a partir de CONFIG.equipmentTypes -->
+            </select>
+            <span class="material-symbols-outlined field__icon" aria-hidden="true">expand_more</span>
+          </div>
+          <span class="field-error" id="errorTipoEquipamento" role="alert">
+            <span class="material-symbols-outlined" aria-hidden="true">error</span>
+            Selecione o tipo de equipamento.
+          </span>
+        </div>
+
+        <!-- Número de Série -->
+        <div class="field" id="fieldSerial">
+          <label class="field__label" for="campoSerial">
+            <span>Número de Série <span class="required-mark">*</span></span>
+          </label>
+          <div class="field__control">
+            <input
+              class="field__input"
+              type="text"
+              id="campoSerial"
+              name="serial"
+              placeholder="Digite o número de série"
+              autocomplete="off"
+              required
+              aria-required="true"
+              aria-describedby="errorSerial"
+            />
+            <span class="material-symbols-outlined field__icon" aria-hidden="true">qr_code_2</span>
+          </div>
+          <span class="field-error" id="errorSerial" role="alert">
+            <span class="material-symbols-outlined" aria-hidden="true">error</span>
+            Informe o número de série.
+          </span>
+        </div>
+
+        <!-- Técnico -->
+        <div class="field" id="fieldTecnico">
+          <label class="field__label" for="campoTecnico">
+            <span>Nome do Técnico <span class="required-mark">*</span></span>
+          </label>
+          <div class="field__control">
+            <input
+              class="field__input"
+              type="text"
+              id="campoTecnico"
+              name="tecnico"
+              placeholder="Digite o nome do técnico"
+              autocomplete="name"
+              required
+              aria-required="true"
+              aria-describedby="errorTecnico"
+            />
+            <span class="material-symbols-outlined field__icon" aria-hidden="true">engineering</span>
+          </div>
+          <span class="field-error" id="errorTecnico" role="alert">
+            <span class="material-symbols-outlined" aria-hidden="true">error</span>
+            Informe o nome do técnico.
+          </span>
+        </div>
+      </div>
+
+      <!-- ===================== Card informativo ===================== -->
+      <div class="info-banner" style="margin-bottom: var(--space-lg);">
+        <div class="info-banner__icon" aria-hidden="true">
+          <span class="material-symbols-outlined">verified_user</span>
+        </div>
+        <div>
+          <span class="info-banner__title">Envio direto Wyntech</span>
+          <span class="info-banner__text">O texto é formatado e copiado instantaneamente para o grupo do WhatsApp.</span>
+        </div>
+      </div>
+
+      <!-- ===================== Botão principal ===================== -->
+      <div class="submit-area">
+        <button class="btn-submit" type="submit" id="btnSubmitForm" disabled aria-describedby="formWarningText">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="btn-submit__whatsapp" aria-hidden="true">
+            <span class="material-symbols-outlined">forum</span>
+          </span>
+          <span class="btn-submit__label">Enviar para WhatsApp</span>
+          <span class="material-symbols-outlined btn-submit__arrow" aria-hidden="true">arrow_forward</span>
+        </button>
+        <p class="form-warning" id="formWarningText" role="status">
+          Complete todos os campos e certifique-se que o MAC tem 12 caracteres.
+        </p>
+      </div>
+    </form>
+  </main>
+
+  <!-- ===================== BOTTOM NAV ===================== -->
+  <nav class="bottom-nav pb-safe" aria-label="Navegação principal">
+    <div class="bottom-nav__inner">
+      <a class="nav-item" href="#" aria-current="page">
+        <span class="material-symbols-outlined" aria-hidden="true">assignment</span>
+        <span class="nav-item__label">O.S. Campo</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="material-symbols-outlined" aria-hidden="true">speed</span>
+        <span class="nav-item__label">Sinal Óptico</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="material-symbols-outlined" aria-hidden="true">inventory_2</span>
+        <span class="nav-item__label">Materiais</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="material-symbols-outlined" aria-hidden="true">history</span>
+        <span class="nav-item__label">Histórico</span>
+      </a>
+    </div>
+  </nav>
+
+</div>
+
+<!-- ===================== MODAL DE REVISÃO ===================== -->
+<div class="modal-backdrop" id="reviewModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal__header">
+      <div class="modal__header-left">
+        <div class="modal__icon" aria-hidden="true">
+          <span class="material-symbols-outlined">assignment_turned_in</span>
+        </div>
+        <div>
+          <h3 class="modal__title" id="modalTitle">Resumo da Solicitação</h3>
+          <span class="modal__subtitle">Wyntech FieldOps · Pronto para despacho</span>
+        </div>
+      </div>
+      <button class="modal__close" type="button" id="btnCloseModal" aria-label="Fechar resumo">
+        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      </button>
+    </div>
+
+    <div>
+      <div class="preview-header">
+        <span class="preview-label">Mensagem gerada</span>
+        <button class="preview-copy-btn" type="button" id="btnCopyInline">
+          <span class="material-symbols-outlined" aria-hidden="true">content_copy</span>
+          <span id="copyBtnInlineText">Copiar mensagem</span>
+        </button>
+      </div>
+      <div class="preview-box" id="formattedOutputContainer"></div>
+    </div>
+
+    <div class="copy-success" id="copySuccessNotice" role="status">
+      <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+      <div>
+        <strong>Copiado com sucesso!</strong>
+        <span class="copy-success__desc">A mensagem está na área de transferência, pronta para colar.</span>
+      </div>
+    </div>
+
+    <div class="dispatch-note">
+      <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+      <p><strong>Aviso de envio:</strong> ao tocar no botão abaixo, a mensagem é copiada automaticamente e o WhatsApp é aberto. Basta colar e enviar no grupo.</p>
+    </div>
+
+    <div class="modal__actions">
+      <button class="btn-whatsapp-send" type="button" id="btnDispatchWhatsapp">
+        <span class="material-symbols-outlined" aria-hidden="true">forum</span>
+        <span>Enviar para WhatsApp</span>
+      </button>
+      <div class="modal__actions-row">
+        <button class="btn-ghost" type="button" id="btnBackEdit">
+          <span class="material-symbols-outlined" aria-hidden="true">edit</span>
+          <span>Voltar e editar</span>
+        </button>
+        <button class="btn-dark-sm" type="button" id="btnCopyFooter">
+          <span class="material-symbols-outlined" aria-hidden="true">file_copy</span>
+          <span id="copyBtnFooterText">Copiar texto</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TOAST ===================== -->
+<div class="toast" id="systemToast" role="status" aria-live="polite">
+  <span class="material-symbols-outlined" id="systemToastIcon" aria-hidden="true">info</span>
+  <span class="toast__text" id="systemToastText">Mensagem</span>
+</div>
+
+<!-- Área invisível usada como fallback de cópia (execCommand) -->
+<textarea id="clipboardFallback" class="sr-only" tabindex="-1" aria-hidden="true"></textarea>
+
+<script src="js/script.js"></script>
+</body>
+</html>
